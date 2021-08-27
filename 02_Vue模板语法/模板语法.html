@@ -1,34 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script type="text/javascript" src="../Script/vue.js" ></script>
+    <script type="text/javascript" src="../Script/vue.js"></script>
 </head>
+
 <body>
-    <div id="root">  
-        <a v-bind:href="url.toUpperCase()" x="name" >点击</a>
+    <div id="root">
+        <a v-bind:href="url.toUpperCase()" x="name">点击</a>
         <a :href="urls" :x="name">点击</a>
         <a :href="urls" :x="school.name">点击</a>
-    </div>  
+    </div>
     <div>
-       
+
     </div>
 </body>
 <script type="text/javascript">
-  new Vue({
-    el: '#root', //el用于指定当前Vue实例未哪个容器服务,值为css选择器字符串  //id 绑的#   class 绑的. 叫做类选择器
-    data:{ //data中用于存储数据,数据供el所指定的容器去使用,值我们暂时先写成一个对象
-        name: "Vinson",
-        url:"https://www.baidu.com",
-        urls:"https://www.baidu.com",
-        school:{
-            name:"shelly",
-            url:"www.baidu.com",
+    new Vue({
+        el: '#root', //el用于指定当前Vue实例未哪个容器服务,值为css选择器字符串  //id 绑的#   class 绑的. 叫做类选择器
+        data: { //data中用于存储数据,数据供el所指定的容器去使用,值我们暂时先写成一个对象
+            name: "Vinson",
+            url: "https://www.baidu.com",
+            urls: "https://www.baidu.com",
+            school: {
+                name: "shelly",
+                url: "www.baidu.com",
+            }
         }
-    }    
-})
+    })
 </script>
+
 </html>
