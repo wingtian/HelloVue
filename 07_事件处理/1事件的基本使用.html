@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../Script/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h2>欢迎来到{{name}}学习</h2>
+        <button v-on:click="showInfo">点我显示1</button>
+        <button @click="showInfo">点我显示2</button>
+        <button @click="showInfo3(66,$event)">点我显示3</button>
+    </div>
+</body>
+<script type="text/javascript">
+    const vm = new Vue({
+        el: "#root",
+        data: {
+            name: "VINSON"
+            //这里也可以放方法, 但是不建议这样做,方法不需要set,不需要数据劫持
+        },
+        methods: {
+            showInfo() {
+                console.log(this) //此处的this 是vm
+                alert('HI')
+            },
+            showInfo3(number,a) { 
+                console.log(number,a)
+                alert('HI2')
+            }
+        },
+    })
+</script>
+
+</html>

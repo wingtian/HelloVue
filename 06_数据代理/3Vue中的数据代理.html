@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="../Script/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"> 
+        <h1 >{{name}}</h1>
+        <h1 >{{_data.address}}</h1>
+    </div>
+</body>
+<script type="text/javascript">
+let data = {
+    name :"VINSON",
+   address:"guangzhou"
+}
+const vm = new Vue({
+   el :"#root",
+   data})
+   /* vm._data === data   true */
+  
+   // data:name  --> vm._data.name (数据劫持) --> vm.name   本质是用了 Object.defineProperty
+</script>
+</html>
