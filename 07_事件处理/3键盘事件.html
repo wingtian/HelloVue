@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../Script/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h2>欢迎{{name}}</h2>
+        <!-- enter 触发事件 -->
+        <input type="text" placeholder="按下回车提示输入" @keyup.enter="showInfo">
+        <!-- delete 触发事件 -->
+        <input type="text" placeholder="按下回车提示输入" @keyup.delete="showInfo">
+        <!-- esc 触发事件 -->
+        <!-- spave 触发事件 -->
+        <!-- up 触发事件 -->
+        <!-- down 触发事件 -->
+        <!-- left 触发事件 -->
+        <!-- right 触发事件 -->
+
+        <!-- 多单词要切换小写且用-分隔词语-->
+        <input type="text" placeholder="按下回车提示输入" @keyup.caps-lock="showInfo">
+
+
+        <!-- tab 触发事件,适合用keydown -->
+        <input type="text" placeholder="按下回车提示输入" @keydown.tab="showInfo">
+        <!-- ctrl 触发事件,适合用keydown -->
+        <!-- alt 触发事件,适合用keydown -->
+        <!-- shift 触发事件,适合用keydown -->
+        <!-- meta 触发事件,适合用keydown -->
+
+        <!--  不推荐使用keycode去指定具体按键-->
+        <input type="text" placeholder="按下回车提示输入" @keydown.huiche="showInfo">
+        <!-- ctrl + y 触发按钮 -->
+        <input type="text" placeholder="按下回车提示输入" @keydown.ctrl.y="showInfo">
+    </div>
+</body>
+<script type="text/javascript">
+    Vue.config.keyCodes.huiche = 13 //定义一个别名  不推荐这样用
+    const vm = new Vue({
+        el: "#root",
+        data: {
+            name: "VINSON"
+        },
+        methods: {
+            showInfo(e) {
+                console.log(e.key, e.keyCode)
+                console.log(e.target.value)
+            }
+        }
+    })
+</script>
+
+</html>

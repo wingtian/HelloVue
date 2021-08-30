@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../Script/vue.js"></script>
+    <style>
+        * {
+            margin-top: 20px;
+        }
+
+        .demo1 {
+            height: 50px;
+            background-color: skyblue;
+        }
+
+        .box1 {
+            padding: 5px;
+            background-color: skyblue;
+        }
+
+        .box2 {
+            padding: 5px;
+            background-color: orange;
+        }
+        .list{
+            width: 200px;
+            height: 200px;
+            background-color: peru;
+            overflow: auto;
+        }
+        li{
+            height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <h2>欢迎来到{{name}}学习</h2>
+        <!-- prevent相同效果,阻止默认时间 -->
+        <a href="https://www.baidu.com" @click.prevent="showInfo">点我显示1</a>
+        <a href="https://www.baidu.com" @click="showInfo1">点我显示2</a>
+        <!-- 阻止冒泡 -->
+        <div class="demo1" @click="showInfo">
+            <button @click="showInfo2">点我提示信息</button>
+            <button @click.stop="showInfo">点我提示信息</button>
+            <button @click.stop.prevent="showInfo">点我提示信息</button><!-- 修饰符可以连续写 -->
+        </div>
+        <!-- 事件只触发一次 -->
+        <button @click.once="showInfo">点我提示信息</button>
+        <!-- capture 时间的捕获模式 -->
+        <div class="box1" @click.capture="showMsg(1)"><!-- capture 先触发这个div -->
+            div1
+            <div class="box2"  @click="showMsg(2)"> 
+                div2
+            </div>
+        </div>
+        <!--  只要event.target是当前操作的元素时才触发时间-->
+        <div class="demo1" @click.self="showInfo"><!-- self 阻止冒泡 -->
+            <button @click="showInfo">点我提示信息</button> 
+        </div>
+        <!-- passive: 时间的默认行为立即执行,无需等待时间回调执行完毕 -->
+        <ul class="list" @scroll="demo"> <!-- 下拉框触发 -->
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+        <ul class="list" @wheel.passive="demo"><!-- 滚轮触发,passive事件未执行完会立刻执行下拉操作-->
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+    </div>
+
+</body>
+<script type="text/javascript">
+    const vm = new Vue({
+        el: "#root",
+        data: {
+            name: "VINSON"
+            //这里也可以放方法, 但是不建议这样做,方法不需要set,不需要数据劫持
+        },
+        methods: {
+            showInfo() {
+                console.log(this) //此处的this 是vm
+                alert('HI')
+            },
+            showInfo1(e) {
+                e.preventDefault();
+                alert('HI2')
+            },
+            showInfo2(e) {
+                e.stopPropagation();
+                alert('HI2')
+            },
+            showMsg(msg) {
+                console.log(msg)
+            },
+            demo(msg) {
+                console.log("@")
+            }
+        },
+    })
+</script>
+
+</html>
