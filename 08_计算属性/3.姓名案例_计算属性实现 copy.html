@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../Script/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        姓: <input type="text" v-model="firstName"> <br /><br />
+        名: <input type="text" v-model="lastName"> <br /><br />
+        姓名:<span>{{firstName.slice(0,3)}} - {{lastName}}</span><br /><br />
+        全名:<span>{{fullName}} </span>
+        全名:<span>{{fullName}} </span> <!-- 有缓存只读一次fullName -->
+    </div>
+</body>
+<script type="text/javascript">
+    const vm = new Vue({
+        el: "#root",
+        data: {
+            firstName: "张", //data里面这些数据是属性
+            lastName: "三",
+        },
+        computed: { //计算属性
+            fullName: {
+                //有人读取fullName,get就会被调用,且返回值就作为fullName的值
+                //get什么时候调用?1.初次读取fullName时. 2.所依赖的数据发生变化时.
+                get() {
+                    return this.firstName + '-' + this.lastName
+                },
+                //set什么时候调用?当fullName被修改时会被调用,且会受到修改的具体值
+                set(value) //可以不写
+                {
+                    console.log('set' + value)
+                    const arr = value.split('-')
+                    this.firstName = arr[0]
+                    this.lastName = arr[1]
+                }
+            }
+        }
+    })
+</script>
+
+</html>
