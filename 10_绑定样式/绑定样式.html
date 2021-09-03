@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../Script/vue.js"></script>
+    <style>
+        .basic {
+            width: 100px;
+            height: 20px;
+            background: aqua;
+        }
+
+        .happy {
+            background-color: rgb(167, 212, 76);
+        }
+
+        .sad {
+            background-color: blue;
+        }
+
+        .normal {
+            background-color: yellow;
+        }
+
+        .vinson1 {
+            width: 300px;
+        }
+
+        .vinson2 {
+            height: 120px;
+        }
+
+        .vinson3 {
+            background-color: rgb(167, 212, 76);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <div class="basic" :class="mood" @click="changeMod">{{name}}</div>
+
+        <div class="basic" :class="classArr" @click="changeMod">{{name}}</div>
+
+        <div class="basic" :class="classoOjb" @click="changeObj">{{name}}</div>
+    </div>
+</body>
+<script type="text/javascript">
+    const vm = new Vue({
+        el: "#root",
+        data: {
+            name: "VINSON",
+            mood: "normal",
+            classArr: ['vinson1', 'vinson2', 'vinson3'],
+            classoOjb: {
+                vinson1: false,
+                vinson2: false,
+                vinson3: false
+            }
+        },
+        methods: {
+            changeMod() {
+                const arr = ['happy', 'sad', 'normal']
+                const index = Math.floor(Math.random() * 3)
+                this.mood = arr[index]
+                /*  this.mood = this.mood == "sad" ? "normal" : "sad" */
+            },
+            changeObj() {
+                this.classoOjb.vinson1 = this.classoOjb.vinson1 ? false : true
+                this.classoOjb.vinson2 = this.classoOjb.vinson2 ? false : true
+                this.classoOjb.vinson3 = this.classoOjb.vinson3 ? false : true
+            }
+        },
+    })
+</script>
+
+</html>
